@@ -4,7 +4,7 @@ import 'package:dynamic_cached_fonts/dynamic_cached_fonts.dart';
 import 'package:dynamic_cached_fonts_example/constants.dart';
 import 'package:dynamic_cached_fonts_example/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FontLoader;
 import 'package:flutter_test/flutter_test.dart';
@@ -214,39 +214,39 @@ void main() {
     });
   });
 
-  group('DynamicCachedFonts.fromFirebase', () {
-    late FileInfo font;
-    late Reference bucketRef;
-
-    setUp(() async {
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-      font = (await DynamicCachedFonts.fromFirebase(
-        bucketUrl: firebaseFontUrl,
-        fontFamily: firebaseFontName,
-      ).load())
-          .first;
-
-      bucketRef = FirebaseStorage.instance.refFromURL(firebaseFontUrl);
-    });
-
-    testWidgets('should parse Firebase Bucket URL', (_) async {
-      expect(font.originalUrl, equals(await bucketRef.getDownloadURL()));
-    });
-
-    testWidgets('should load font into cache', (_) async {
-      expect(font, isNotNull);
-    });
-
-    testWidgets('should load valid font file from Firebase', (_) async {
-      expect(
-        font.file.readAsBytesSync(),
-        orderedEquals((await bucketRef.getData())!),
-      );
-    });
-  },
-      skip: ThemeData().platform == TargetPlatform.windows ||
-          ThemeData().platform == TargetPlatform.linux);
+  // group('DynamicCachedFonts.fromFirebase', () {
+  //   late FileInfo font;
+  //   late Reference bucketRef;
+  //
+  //   setUp(() async {
+  //     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //
+  //     font = (await DynamicCachedFonts.fromFirebase(
+  //       bucketUrl: firebaseFontUrl,
+  //       fontFamily: firebaseFontName,
+  //     ).load())
+  //         .first;
+  //
+  //     bucketRef = FirebaseStorage.instance.refFromURL(firebaseFontUrl);
+  //   });
+  //
+  //   testWidgets('should parse Firebase Bucket URL', (_) async {
+  //     expect(font.originalUrl, equals(await bucketRef.getDownloadURL()));
+  //   });
+  //
+  //   testWidgets('should load font into cache', (_) async {
+  //     expect(font, isNotNull);
+  //   });
+  //
+  //   testWidgets('should load valid font file from Firebase', (_) async {
+  //     expect(
+  //       font.file.readAsBytesSync(),
+  //       orderedEquals((await bucketRef.getData())!),
+  //     );
+  //   });
+  // },
+  //     skip: ThemeData().platform == TargetPlatform.windows ||
+  //         ThemeData().platform == TargetPlatform.linux);
 
   group('DynamicCachedFonts.cacheFont', () {
     FileInfo? font;

@@ -255,7 +255,7 @@ class DynamicCachedFonts {
 
     final List<String> downloadUrls = await Future.wait(
       urls.map(
-        (String url) async => _isFirebaseURL ? await Utils.handleUrl(url) : url,
+        (String url) async => url,
       ),
     );
 
@@ -326,7 +326,7 @@ class DynamicCachedFonts {
 
     final List<String> downloadUrls = await Future.wait(
       urls.map(
-        (String url) async => _isFirebaseURL ? await Utils.handleUrl(url) : url,
+        (String url) async => url,
       ),
     );
 
