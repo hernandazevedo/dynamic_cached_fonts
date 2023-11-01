@@ -16,7 +16,7 @@ export 'src/utils.dart' show cacheKeyFromUrl;
 
 part 'src/raw_dynamic_cached_fonts.dart';
 
-/// Allows dynamically loading fonts from the given url.
+/// Allows dynamicailly loading fonts from the given url.
 ///
 /// Fetching fonts from Firebase Storage is also supported.
 ///
@@ -104,7 +104,6 @@ class DynamicCachedFonts {
           'url cannot be empty',
         ),
         urls = <String>[url],
-        _isFirebaseURL = false,
         _loaded = false;
 
   /// Allows dynamically loading fonts from the given list of url and caching them.
@@ -145,16 +144,11 @@ class DynamicCachedFonts {
           'fontFamily cannot be empty',
         ),
         assert(
-          urls.length > 1,
-          'At least 2 urls have to be provided. To load a single font url, use the default constructor',
-        ),
-        assert(
           urls.every(
             (String url) => url != '',
           ),
           'url cannot be empty',
         ),
-        _isFirebaseURL = false,
         _loaded = false;
 
   /// Allows dynamically loading fonts from firebase storage with the given
@@ -199,7 +193,6 @@ class DynamicCachedFonts {
           'bucketUrl cannot be empty',
         ),
         urls = <String>[bucketUrl],
-        _isFirebaseURL = true,
         _loaded = false;
 
   /// Used to specify the download url(s) for the required font(s).
@@ -235,9 +228,6 @@ class DynamicCachedFonts {
   /// It is used to specify the cache configuration, [Config],
   /// for [CacheManager].
   final Duration cacheStalePeriod;
-
-  /// Determines whether [url] is a firebase storage bucket url.
-  final bool _isFirebaseURL;
 
   /// Checks whether [load] has already been called.
   bool _loaded;

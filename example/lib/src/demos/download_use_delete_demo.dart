@@ -5,7 +5,6 @@ import 'package:dynamic_cached_fonts_example/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../components.dart';
-import 'firebase_demo.dart';
 
 class DynamicCachedFontsDemo3 extends StatefulWidget {
   const DynamicCachedFontsDemo3({Key? key}) : super(key: key);
@@ -46,16 +45,6 @@ class _DynamicCachedFontsDemo3State extends State<DynamicCachedFontsDemo3> {
             fontFamily: notoSans,
           ),
         ],
-      ),
-      floatingActionButton: ExtendedButton(
-        icon: Icons.navigate_next,
-        label: 'Next Example',
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute<DynamicCachedFontsDemo4>(
-            builder: (_) => const DynamicCachedFontsDemo4(),
-          ),
-        ),
       ),
     );
   }
